@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	long long int a, b = 0;
+
+	cout << "Введите случайное число для определения его разрядов" << endl;
+	cin >> a;
+
+	long long int c = a;
+	int scoreNum = 0;
+	int number;
+	int numDigit = 1;
+
+	long long int saveArr[1]{ a }; // value storage array
+
+	while (a > 0) // determine the number of characters in the number
+	{
+		a /= 10;
+		b++;
+	}
+
+	int* arr = new int[b]; // write characters to an array
+	while (c > 0)
+	{
+		number = c % 10;
+		arr[scoreNum] = number;
+		scoreNum++;
+		c /= 10;
+	}
+	b -= 1; //dog - nail
+	
+	for (int i = b; i >= 0; i--) // we extract the values from the array starting from the last value
+	{
+		cout << numDigit << " разряд числа = " << arr[i] << endl;
+		numDigit++;
+	}
+
+	delete [] arr; // delete the array from memory
+	b++; // dog-nail
+	cout << endl << "Количество знаков в числе " << saveArr[0] << " будет равно =" << b << endl;
+
+	cin.get();
+
+}
